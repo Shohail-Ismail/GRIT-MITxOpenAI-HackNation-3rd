@@ -2,3 +2,6 @@ project_id = "shuzruoujtztngwzdffo"
 
 [functions.analyze-location]
 verify_jwt = false
+
+[functions.enrich-demographics]
+verify_jwt = false

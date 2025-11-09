@@ -136,11 +136,12 @@ const Index = () => {
                 </div>
                 
                 <div className="lg:col-span-2">
-                  <RiskMap
-                    latitude={riskData.latitude}
-                    longitude={riskData.longitude}
-                    riskScore={riskData.overallScore}
-                  />
+        <RiskMap 
+          latitude={riskData.latitude} 
+          longitude={riskData.longitude} 
+          riskScore={riskData.overallScore}
+          riskFactors={riskData.factors}
+        />
                 </div>
               </div>
             </section>
