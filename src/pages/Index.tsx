@@ -10,6 +10,7 @@ import RiskChart from "@/components/RiskChart";
 import InteractiveKPISection from "@/components/InteractiveKPISection";
 import TransparencyPanel from "@/components/TransparencyPanel";
 import Footer from "@/components/Footer";
+import { GeospatialAnalysisPanel } from "@/components/GeospatialAnalysisPanel";
 import { downloadCSV } from "@/utils/csvExport";
 import { toast } from "sonner";
 
@@ -148,6 +149,10 @@ const Index = () => {
 
             <section className="max-w-6xl mx-auto">
               <RiskChart factors={riskData.factors} />
+            </section>
+
+            <section className="max-w-6xl mx-auto">
+              <GeospatialAnalysisPanel />
             </section>
 
             <section className="max-w-6xl mx-auto space-y-6">

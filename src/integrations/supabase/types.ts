@@ -14,6 +14,75 @@ export type Database = {
   }
   public: {
     Tables: {
+      geospatial_analysis: {
+        Row: {
+          acquisition_date_post: string | null
+          acquisition_date_pre: string | null
+          analysis_results: Json | null
+          analysis_type: string
+          bbox_east: number | null
+          bbox_north: number | null
+          bbox_south: number | null
+          bbox_west: number | null
+          center_latitude: number
+          center_longitude: number
+          created_at: string | null
+          error_message: string | null
+          geotiff_url: string | null
+          id: string
+          location_name: string | null
+          processing_status: string | null
+          satellite_source: string | null
+          shapefile_url: string | null
+          thumbnail_url: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          acquisition_date_post?: string | null
+          acquisition_date_pre?: string | null
+          analysis_results?: Json | null
+          analysis_type: string
+          bbox_east?: number | null
+          bbox_north?: number | null
+          bbox_south?: number | null
+          bbox_west?: number | null
+          center_latitude: number
+          center_longitude: number
+          created_at?: string | null
+          error_message?: string | null
+          geotiff_url?: string | null
+          id?: string
+          location_name?: string | null
+          processing_status?: string | null
+          satellite_source?: string | null
+          shapefile_url?: string | null
+          thumbnail_url?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          acquisition_date_post?: string | null
+          acquisition_date_pre?: string | null
+          analysis_results?: Json | null
+          analysis_type?: string
+          bbox_east?: number | null
+          bbox_north?: number | null
+          bbox_south?: number | null
+          bbox_west?: number | null
+          center_latitude?: number
+          center_longitude?: number
+          created_at?: string | null
+          error_message?: string | null
+          geotiff_url?: string | null
+          id?: string
+          location_name?: string | null
+          processing_status?: string | null
+          satellite_source?: string | null
+          shapefile_url?: string | null
+          thumbnail_url?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       satellite_data: {
         Row: {
           acquisition_time: string
