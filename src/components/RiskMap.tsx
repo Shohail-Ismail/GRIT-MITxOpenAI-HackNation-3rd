@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { supabase } from "@/integrations/supabase/client";
-import { Loader2 } from "lucide-react";
+import { Loader2, Satellite, Layers } from "lucide-react";
 
 interface RiskMapProps {
   latitude: number;
@@ -38,11 +40,70 @@ interface GridPoint {
   distance: number;
 }
 
+interface SatelliteData {
+  id: string;
+  latitude: number;
+  longitude: number;
+  acquisition_time: string;
+  cloud_coverage: number;
+  vegetation_index: number;
+  water_index: number;
+  temperature: number;
+  risk_indicators: {
+    flood_risk: number;
+    drought_risk: number;
+    wildfire_risk: number;
+    storm_risk: number;
+  };
+  source: string;
+}
+
 const RiskMap = ({ latitude, longitude, riskScore, riskFactors }: RiskMapProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<L.Map | null>(null);
   const [gridData, setGridData] = useState<GridPoint[]>([]);
+  const [satelliteData, setSatelliteData] = useState<SatelliteData[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showSatelliteLayer, setShowSatelliteLayer] = useState(false);
+  const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
+
+  // Fetch satellite data
+  useEffect(() => {
+    const fetchSatelliteData = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('satellite_data')
+          .select('*')
+          .gte('latitude', latitude - 0.05)
+          .lte('latitude', latitude + 0.05)
+          .gte('longitude', longitude - 0.05)
+          .lte('longitude', longitude + 0.05)
+          .order('acquisition_time', { ascending: false })
+          .limit(100);
+
+        if (error) throw error;
+        
+        if (data && data.length > 0) {
+          // Cast risk_indicators from Json to the expected type
+          const typedData = data.map(point => ({
+            ...point,
+            risk_indicators: point.risk_indicators as unknown as {
+              flood_risk: number;
+              drought_risk: number;
+              wildfire_risk: number;
+              storm_risk: number;
+            }
+          }));
+          setSatelliteData(typedData);
+          setLastUpdate(new Date(data[0].acquisition_time));
+        }
+      } catch (error) {
+        console.error('Error fetching satellite data:', error);
+      }
+    };
+
+    fetchSatelliteData();
+  }, [latitude, longitude]);
 
   useEffect(() => {
     const fetchDemographics = async () => {
@@ -191,6 +252,66 @@ const RiskMap = ({ latitude, longitude, riskScore, riskFactors }: RiskMapProps) 
       });
     });
 
+    // Add satellite data layer if enabled
+    if (showSatelliteLayer && satelliteData.length > 0) {
+      satelliteData.forEach((point) => {
+        const getSatelliteColor = (indicators: any) => {
+          const avgRisk = (indicators.flood_risk + indicators.drought_risk + indicators.wildfire_risk + indicators.storm_risk) / 4;
+          if (avgRisk >= 75) return '#dc2626';
+          if (avgRisk >= 50) return '#ef4444';
+          if (avgRisk >= 25) return '#f59e0b';
+          return '#10b981';
+        };
+
+        const color = getSatelliteColor(point.risk_indicators);
+
+        const satelliteIcon = L.divIcon({
+          className: 'custom-satellite-marker',
+          html: `<div style="background: ${color}; border: 2px solid rgba(255,255,255,0.8); border-radius: 4px; width: 10px; height: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.3); opacity: 0.8;"></div>`,
+          iconSize: [10, 10],
+          iconAnchor: [5, 5],
+        });
+
+        const acquisitionDate = new Date(point.acquisition_time).toLocaleString();
+
+        L.marker([point.latitude, point.longitude], { icon: satelliteIcon })
+          .addTo(map)
+          .bindPopup(`
+            <div style="font-family: system-ui; min-width: 260px; padding: 8px;">
+              <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 10px;">
+                <div style="font-size: 20px;">🛰️</div>
+                <strong style="font-size: 13px; color: hsl(var(--primary));">Satellite Data</strong>
+              </div>
+              
+              <div style="background: hsl(var(--muted)); padding: 8px; border-radius: 6px; margin-bottom: 8px; font-size: 10px; color: hsl(var(--muted-foreground));">
+                <div><strong>Acquired:</strong> ${acquisitionDate}</div>
+                <div><strong>Source:</strong> ${point.source}</div>
+              </div>
+
+              <div style="margin-bottom: 8px;">
+                <div style="font-weight: 600; margin-bottom: 4px; font-size: 11px; color: hsl(var(--foreground));">📡 Measurements</div>
+                <div style="font-size: 10px; line-height: 1.5; color: hsl(var(--muted-foreground));">
+                  <div><strong>Cloud Coverage:</strong> ${point.cloud_coverage}%</div>
+                  <div><strong>Vegetation Index:</strong> ${point.vegetation_index}</div>
+                  <div><strong>Water Index:</strong> ${point.water_index}</div>
+                  <div><strong>Temperature:</strong> ${point.temperature}°C</div>
+                </div>
+              </div>
+
+              <div style="border-top: 1px solid hsl(var(--border)); padding-top: 6px;">
+                <div style="font-weight: 600; margin-bottom: 4px; font-size: 11px; color: hsl(var(--foreground));">⚠️ Risk Indicators</div>
+                <div style="font-size: 10px; line-height: 1.5; color: hsl(var(--muted-foreground));">
+                  <div style="display: flex; justify-content: space-between;"><span>Flood:</span><strong>${point.risk_indicators.flood_risk}</strong></div>
+                  <div style="display: flex; justify-content: space-between;"><span>Drought:</span><strong>${point.risk_indicators.drought_risk}</strong></div>
+                  <div style="display: flex; justify-content: space-between;"><span>Wildfire:</span><strong>${point.risk_indicators.wildfire_risk}</strong></div>
+                  <div style="display: flex; justify-content: space-between;"><span>Storm:</span><strong>${point.risk_indicators.storm_risk}</strong></div>
+                </div>
+              </div>
+            </div>
+          `);
+      });
+    }
+
     return () => {
       if (mapInstance.current) {
         mapInstance.current.remove();
@@ -210,6 +331,62 @@ const RiskMap = ({ latitude, longitude, riskScore, riskFactors }: RiskMapProps) 
             </div>
           </div>
         )}
+        
+        {/* Satellite Layer Controls */}
+        <div className="absolute top-4 right-4 z-[1000] flex flex-col gap-2">
+          <Button
+            onClick={() => setShowSatelliteLayer(!showSatelliteLayer)}
+            variant={showSatelliteLayer ? "default" : "outline"}
+            size="sm"
+            className="bg-background/95 backdrop-blur shadow-lg"
+          >
+            <Satellite className="h-4 w-4 mr-2" />
+            Satellite Data
+          </Button>
+          
+          {satelliteData.length > 0 && lastUpdate && (
+            <Badge variant="secondary" className="bg-background/95 backdrop-blur shadow-lg text-xs">
+              <Layers className="h-3 w-3 mr-1" />
+              {satelliteData.length} points
+            </Badge>
+          )}
+        </div>
+
+        {/* Map Legend */}
+        <div className="absolute bottom-4 left-4 z-[1000] bg-background/95 backdrop-blur rounded-lg shadow-lg p-3 text-xs">
+          <div className="font-semibold mb-2 text-foreground">Risk Levels</div>
+          <div className="flex flex-col gap-1">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full" style={{ background: '#10b981' }} />
+              <span className="text-muted-foreground">Low (0-25)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full" style={{ background: '#f59e0b' }} />
+              <span className="text-muted-foreground">Medium (25-50)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full" style={{ background: '#ef4444' }} />
+              <span className="text-muted-foreground">High (50-75)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full" style={{ background: '#dc2626' }} />
+              <span className="text-muted-foreground">Critical (75-100)</span>
+            </div>
+          </div>
+          
+          {showSatelliteLayer && satelliteData.length > 0 && (
+            <div className="mt-3 pt-3 border-t border-border">
+              <div className="font-semibold mb-2 text-foreground flex items-center gap-1">
+                <Satellite className="h-3 w-3" />
+                Satellite Layer
+              </div>
+              <div className="text-muted-foreground">
+                Last update: {lastUpdate?.toLocaleTimeString()}
+              </div>
+            </div>
+          )}
+        </div>
+
         <div ref={mapRef} className="h-full w-full" />
       </div>
     </Card>
