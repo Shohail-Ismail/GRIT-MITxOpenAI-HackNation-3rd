@@ -62,10 +62,10 @@ const Hero = ({ onGetStarted }: { onGetStarted: () => void }) => {
           {/* Stats or feature highlights */}
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto animate-fade-in">
           {[
-            { label: "Risk Parameters", value: "50+" },
-            { label: "Peril Categories", value: "12+" },
-            { label: "Global Coverage", value: "100%" },
-            { label: "Model Transparency", value: "Full" }
+            { label: "Satellite Data Feeds", value: "15+" },
+            { label: "Analysis Speed", value: "<60s" },
+            { label: "Geospatial Resolution", value: "10m" },
+            { label: "Parametric Triggers", value: "100+" }
           ].map((stat, i) => (
               <div 
                 key={i} 
