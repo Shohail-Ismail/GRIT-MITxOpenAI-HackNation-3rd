@@ -113,7 +113,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <div className="sticky top-0 z-50 bg-gradient-to-r from-primary/5 via-background/95 to-secondary/5 backdrop-blur-md border-b border-border/50 shadow-sm">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-primary/5 via-background/80 to-secondary/5 backdrop-blur-md border-b border-border/50 shadow-sm">
         <div className="container mx-auto px-4 py-3 flex justify-end">
           <Button onClick={handleSignOut} variant="outline" size="sm" className="border-primary/20 hover:bg-primary/5">
             <LogOut className="mr-2 h-4 w-4" />
