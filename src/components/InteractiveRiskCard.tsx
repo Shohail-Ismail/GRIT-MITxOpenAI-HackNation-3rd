@@ -77,7 +77,7 @@ const InteractiveRiskCard = ({
         </Card>
       </DialogTrigger>
       
-      <DialogContent>
+      <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Icon className="h-5 w-5 text-primary" />

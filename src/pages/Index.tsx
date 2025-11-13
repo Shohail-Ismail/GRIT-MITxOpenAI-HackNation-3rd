@@ -158,6 +158,7 @@ const Index = () => {
                     overallScore={riskData.overallScore}
                     latitude={riskData.latitude}
                     longitude={riskData.longitude}
+                    factors={riskData.factors}
                   />
                 </div>
                 
