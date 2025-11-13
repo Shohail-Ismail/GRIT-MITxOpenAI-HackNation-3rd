@@ -71,11 +71,11 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Background with earth-toned gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-[hsl(195,30%,85%)] to-secondary/25" />
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-[hsl(175,35%,75%)]">
+      {/* Background with earth-toned greenish gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(180,40%,70%)] via-[hsl(175,35%,75%)] to-[hsl(170,45%,70%)]" />
       <div 
-        className="absolute inset-0 opacity-[0.12]"
+        className="absolute inset-0 opacity-[0.25] mix-blend-overlay"
         style={{
           backgroundImage: `url(${earthHero})`,
           backgroundSize: 'cover',
@@ -83,7 +83,7 @@ const Auth = () => {
         }}
       />
       
-      <Card className="w-full max-w-md relative backdrop-blur-sm bg-card/90 shadow-xl border-primary/30">
+      <Card className="w-full max-w-md relative backdrop-blur-sm bg-card/95 shadow-xl border-primary/30">
         <CardHeader>
           <CardTitle>{activeTab === "signin" ? "Sign In" : "Sign Up"}</CardTitle>
           <CardDescription>
