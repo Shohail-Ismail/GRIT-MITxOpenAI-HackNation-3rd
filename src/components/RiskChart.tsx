@@ -9,19 +9,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { CalculationPoint } from "@/components/FormulaDisplay";
 
-interface CalculationPointData {
-  title: string;
-  description: string;
-  formula?: string;
-  variables?: { symbol: string; description: string; }[];
-}
 
-interface RiskFactor {
+interface RiskExplanation {
   title: string;
   explanation: string;
-  calculationPoints: CalculationPointData[];
+  calculationMethod: string;
   transparencyNote: string;
 }
 
@@ -33,10 +26,10 @@ interface RiskChartProps {
     drought: number;
   };
   riskExplanations?: {
-    flood: RiskFactor;
-    wildfire: RiskFactor;
-    storm: RiskFactor;
-    drought: RiskFactor;
+    flood: RiskExplanation;
+    wildfire: RiskExplanation;
+    storm: RiskExplanation;
+    drought: RiskExplanation;
   };
 }
 
@@ -140,11 +133,7 @@ const RiskChart = ({ factors, riskExplanations }: RiskChartProps) => {
                 </div>
                 <div className="pt-4 border-t">
                   <h4 className="font-semibold mb-2">Calculation Methodology</h4>
-                  <div className="space-y-1">
-                    {riskExplanations.flood.calculationPoints.map((point, idx) => (
-                      <CalculationPoint key={idx} {...point} />
-                    ))}
-                  </div>
+                  <p className="text-sm text-muted-foreground whitespace-pre-line">{riskExplanations.flood.calculationMethod}</p>
                 </div>
                 <div className="pt-4 border-t">
                   <h4 className="font-semibold mb-2 flex items-center gap-2">
@@ -178,11 +167,7 @@ const RiskChart = ({ factors, riskExplanations }: RiskChartProps) => {
                 </div>
                 <div className="pt-4 border-t">
                   <h4 className="font-semibold mb-2">Calculation Methodology</h4>
-                  <div className="space-y-1">
-                    {riskExplanations.wildfire.calculationPoints.map((point, idx) => (
-                      <CalculationPoint key={idx} {...point} />
-                    ))}
-                  </div>
+                  <p className="text-sm text-muted-foreground whitespace-pre-line">{riskExplanations.wildfire.calculationMethod}</p>
                 </div>
                 <div className="pt-4 border-t">
                   <h4 className="font-semibold mb-2 flex items-center gap-2">
@@ -216,11 +201,7 @@ const RiskChart = ({ factors, riskExplanations }: RiskChartProps) => {
                 </div>
                 <div className="pt-4 border-t">
                   <h4 className="font-semibold mb-2">Calculation Methodology</h4>
-                  <div className="space-y-1">
-                    {riskExplanations.storm.calculationPoints.map((point, idx) => (
-                      <CalculationPoint key={idx} {...point} />
-                    ))}
-                  </div>
+                  <p className="text-sm text-muted-foreground whitespace-pre-line">{riskExplanations.storm.calculationMethod}</p>
                 </div>
                 <div className="pt-4 border-t">
                   <h4 className="font-semibold mb-2 flex items-center gap-2">
@@ -254,11 +235,7 @@ const RiskChart = ({ factors, riskExplanations }: RiskChartProps) => {
                 </div>
                 <div className="pt-4 border-t">
                   <h4 className="font-semibold mb-2">Calculation Methodology</h4>
-                  <div className="space-y-1">
-                    {riskExplanations.drought.calculationPoints.map((point, idx) => (
-                      <CalculationPoint key={idx} {...point} />
-                    ))}
-                  </div>
+                  <p className="text-sm text-muted-foreground whitespace-pre-line">{riskExplanations.drought.calculationMethod}</p>
                 </div>
                 <div className="pt-4 border-t">
                   <h4 className="font-semibold mb-2 flex items-center gap-2">
