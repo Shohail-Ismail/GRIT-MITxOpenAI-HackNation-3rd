@@ -1,5 +1,13 @@
-import { MapPin, Sparkles } from "lucide-react";
+import { MapPin, Sparkles, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import earthHero from "@/assets/earth-hero.jpg";
 
 const Hero = ({ onGetStarted }: { onGetStarted: () => void }) => {
@@ -61,20 +69,259 @@ const Hero = ({ onGetStarted }: { onGetStarted: () => void }) => {
           
           {/* Stats or feature highlights */}
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto animate-fade-in">
-          {[
-            { label: "Satellite Data Feeds", value: "15+" },
-            { label: "Analysis Speed", value: "<60s" },
-            { label: "Geospatial Resolution", value: "10m" },
-            { label: "Parametric Triggers", value: "100+" }
-          ].map((stat, i) => (
-              <div 
-                key={i} 
-                className="backdrop-blur-md bg-white/10 rounded-2xl p-4 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105"
-              >
-                <div className="text-3xl md:text-4xl font-bold text-white mb-1">{stat.value}</div>
-                <div className="text-sm md:text-base text-white/80">{stat.label}</div>
-              </div>
-            ))}
+            <Dialog>
+              <DialogTrigger asChild>
+                <div className="backdrop-blur-md bg-white/10 rounded-2xl p-4 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-pointer group">
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-1">15+</div>
+                  <div className="text-sm md:text-base text-white/80 flex items-center gap-1">
+                    Satellite Data Feeds
+                    <Info className="h-3 w-3 opacity-60 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                </div>
+              </DialogTrigger>
+              <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle className="text-2xl">15+ Satellite Data Feeds</DialogTitle>
+                  <DialogDescription className="text-base pt-2">
+                    Comprehensive multi-source satellite data integration
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4 pt-2">
+                  <p className="text-sm text-muted-foreground">
+                    GRIT integrates data from multiple satellite sources to provide comprehensive, real-time climate risk assessment:
+                  </p>
+                  
+                  <div className="space-y-3">
+                    <div className="p-3 bg-muted/50 rounded-lg">
+                      <h4 className="font-semibold mb-1">NASA & NOAA Climate Satellites</h4>
+                      <p className="text-sm text-muted-foreground">MODIS, VIIRS, GOES-R series for temperature, precipitation, and atmospheric conditions</p>
+                    </div>
+                    
+                    <div className="p-3 bg-muted/50 rounded-lg">
+                      <h4 className="font-semibold mb-1">ESA Copernicus Program</h4>
+                      <p className="text-sm text-muted-foreground">Sentinel-1 (SAR for flood detection), Sentinel-2 (multispectral imagery), Sentinel-3 (ocean/land monitoring)</p>
+                    </div>
+                    
+                    <div className="p-3 bg-muted/50 rounded-lg">
+                      <h4 className="font-semibold mb-1">Commercial High-Resolution Imagery</h4>
+                      <p className="text-sm text-muted-foreground">Planet Labs, Maxar for detailed infrastructure mapping and change detection</p>
+                    </div>
+                    
+                    <div className="p-3 bg-muted/50 rounded-lg">
+                      <h4 className="font-semibold mb-1">Specialized Climate Data</h4>
+                      <p className="text-sm text-muted-foreground">GPM (precipitation), GRACE (water storage), ICESat-2 (elevation/vegetation)</p>
+                    </div>
+                  </div>
+                  
+                  <div className="pt-3 border-t">
+                    <h4 className="font-semibold mb-2 flex items-center gap-2">
+                      <Info className="h-4 w-4 text-primary" />
+                      Why These Sources?
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      Each satellite provides unique capabilities: optical for visual assessment, SAR for all-weather monitoring, 
+                      thermal for heat detection, and multispectral for vegetation health. This redundancy ensures continuous coverage 
+                      and cross-validation, critical for accurate parametric insurance triggers.
+                    </p>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
+
+            <Dialog>
+              <DialogTrigger asChild>
+                <div className="backdrop-blur-md bg-white/10 rounded-2xl p-4 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-pointer group">
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-1">&lt;60s</div>
+                  <div className="text-sm md:text-base text-white/80 flex items-center gap-1">
+                    Analysis Speed
+                    <Info className="h-3 w-3 opacity-60 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                </div>
+              </DialogTrigger>
+              <DialogContent className="max-w-2xl">
+                <DialogHeader>
+                  <DialogTitle className="text-2xl">Analysis Speed: Under 60 Seconds</DialogTitle>
+                  <DialogDescription className="text-base pt-2">
+                    Real-time processing architecture for instant risk assessment
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4 pt-2">
+                  <p className="text-sm text-muted-foreground">
+                    GRIT delivers comprehensive climate risk analysis in under 60 seconds through optimized processing:
+                  </p>
+                  
+                  <div className="space-y-3">
+                    <div className="p-3 bg-muted/50 rounded-lg">
+                      <h4 className="font-semibold mb-1">Pre-Processed Data Tiles</h4>
+                      <p className="text-sm text-muted-foreground">Satellite imagery and climate data pre-processed into global tiles updated daily, eliminating raw data processing time</p>
+                    </div>
+                    
+                    <div className="p-3 bg-muted/50 rounded-lg">
+                      <h4 className="font-semibold mb-1">Edge Computing Infrastructure</h4>
+                      <p className="text-sm text-muted-foreground">Distributed serverless functions that scale automatically and run close to data sources</p>
+                    </div>
+                    
+                    <div className="p-3 bg-muted/50 rounded-lg">
+                      <h4 className="font-semibold mb-1">Parallel Processing</h4>
+                      <p className="text-sm text-muted-foreground">Multiple risk factors (flood, fire, drought, storm) analyzed simultaneously rather than sequentially</p>
+                    </div>
+                  </div>
+                  
+                  <div className="pt-3 border-t">
+                    <h4 className="font-semibold mb-2 flex items-center gap-2">
+                      <Info className="h-4 w-4 text-primary" />
+                      Why Speed Matters
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      Rapid analysis enables real-time decision making for insurance underwriting, emergency response, and climate adaptation planning. 
+                      Speed doesn't compromise accuracy - our system balances computational efficiency with rigorous validation.
+                    </p>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
+
+            <Dialog>
+              <DialogTrigger asChild>
+                <div className="backdrop-blur-md bg-white/10 rounded-2xl p-4 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-pointer group">
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-1">10m</div>
+                  <div className="text-sm md:text-base text-white/80 flex items-center gap-1">
+                    Geospatial Resolution
+                    <Info className="h-3 w-3 opacity-60 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                </div>
+              </DialogTrigger>
+              <DialogContent className="max-w-2xl">
+                <DialogHeader>
+                  <DialogTitle className="text-2xl">10-Meter Geospatial Resolution</DialogTitle>
+                  <DialogDescription className="text-base pt-2">
+                    Building-level precision for accurate risk assessment
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4 pt-2">
+                  <p className="text-sm text-muted-foreground">
+                    GRIT achieves 10-meter spatial resolution, enabling property-level risk differentiation:
+                  </p>
+                  
+                  <div className="space-y-3">
+                    <div className="p-3 bg-muted/50 rounded-lg">
+                      <h4 className="font-semibold mb-1">What 10m Resolution Means</h4>
+                      <p className="text-sm text-muted-foreground">Each pixel represents a 10m × 10m area on the ground - approximately the size of a large house. This allows individual building identification and micro-terrain analysis.</p>
+                    </div>
+                    
+                    <div className="p-3 bg-muted/50 rounded-lg">
+                      <h4 className="font-semibold mb-1">Sentinel-2 Foundation</h4>
+                      <p className="text-sm text-muted-foreground">Based on ESA Sentinel-2 multispectral imagery (10m bands), validated against higher-resolution commercial imagery (0.5-3m) and DEMs</p>
+                    </div>
+                    
+                    <div className="p-3 bg-muted/50 rounded-lg">
+                      <h4 className="font-semibold mb-1">Practical Applications</h4>
+                      <p className="text-sm text-muted-foreground">
+                        • Distinguish flood risk between adjacent properties<br/>
+                        • Identify vegetation buffers around structures<br/>
+                        • Map drainage patterns and slope variations<br/>
+                        • Detect land use changes over time
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="pt-3 border-t">
+                    <h4 className="font-semibold mb-2 flex items-center gap-2">
+                      <Info className="h-4 w-4 text-primary" />
+                      Why This Resolution?
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      10m strikes the optimal balance between detail and global coverage. Higher resolution (1-5m) is available but creates 
+                      prohibitive storage/processing costs for global analysis. Lower resolution (&gt;30m) misses critical micro-topography that 
+                      determines flood paths and fire spread patterns.
+                    </p>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
+
+            <Dialog>
+              <DialogTrigger asChild>
+                <div className="backdrop-blur-md bg-white/10 rounded-2xl p-4 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-pointer group">
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-1">100+</div>
+                  <div className="text-sm md:text-base text-white/80 flex items-center gap-1">
+                    Parametric Triggers
+                    <Info className="h-3 w-3 opacity-60 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                </div>
+              </DialogTrigger>
+              <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle className="text-2xl">100+ Parametric Triggers</DialogTitle>
+                  <DialogDescription className="text-base pt-2">
+                    Objective, automated insurance payout conditions
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4 pt-2">
+                  <p className="text-sm text-muted-foreground">
+                    Parametric insurance pays out automatically when predefined, measurable conditions are met, eliminating claim disputes:
+                  </p>
+                  
+                  <div className="space-y-3">
+                    <div className="p-3 bg-muted/50 rounded-lg">
+                      <h4 className="font-semibold mb-1">Flood Triggers (25+)</h4>
+                      <p className="text-sm text-muted-foreground">
+                        • Precipitation &gt; X mm in 24 hours<br/>
+                        • Water level rise &gt; Y meters<br/>
+                        • SAR-detected inundation &gt; Z hectares<br/>
+                        • River gauge exceeding flood stage<br/>
+                        • Storm surge height thresholds
+                      </p>
+                    </div>
+                    
+                    <div className="p-3 bg-muted/50 rounded-lg">
+                      <h4 className="font-semibold mb-1">Wildfire Triggers (25+)</h4>
+                      <p className="text-sm text-muted-foreground">
+                        • Fire Radiative Power &gt; threshold<br/>
+                        • Burned area within radius<br/>
+                        • Fire Weather Index levels<br/>
+                        • Wind speed + temperature combinations<br/>
+                        • Proximity to active fire perimeter
+                      </p>
+                    </div>
+                    
+                    <div className="p-3 bg-muted/50 rounded-lg">
+                      <h4 className="font-semibold mb-1">Drought Triggers (25+)</h4>
+                      <p className="text-sm text-muted-foreground">
+                        • Soil moisture below percentile<br/>
+                        • Consecutive days without rain<br/>
+                        • Vegetation health indices<br/>
+                        • Evapotranspiration stress<br/>
+                        • Palmer Drought Severity Index
+                      </p>
+                    </div>
+                    
+                    <div className="p-3 bg-muted/50 rounded-lg">
+                      <h4 className="font-semibold mb-1">Storm Triggers (25+)</h4>
+                      <p className="text-sm text-muted-foreground">
+                        • Wind speed &gt; threshold at location<br/>
+                        • Hurricane category at landfall<br/>
+                        • Hail size detection<br/>
+                        • Lightning strike density<br/>
+                        • Tornado proximity and intensity
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="pt-3 border-t">
+                    <h4 className="font-semibold mb-2 flex items-center gap-2">
+                      <Info className="h-4 w-4 text-primary" />
+                      Why Parametric Insurance?
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      Traditional insurance requires claims adjusters, documentation, and weeks of processing. Parametric triggers are objective, 
+                      satellite-verified, and enable instant payouts when conditions are met. This reduces administrative costs and provides 
+                      immediate liquidity when it's needed most. Every trigger is independently verifiable through public satellite data.
+                    </p>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>
