@@ -73,9 +73,9 @@ const Auth = () => {
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
       {/* Background with earth-toned gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-background to-secondary/15" />
       <div 
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.05]"
         style={{
           backgroundImage: `url(${earthHero})`,
           backgroundSize: 'cover',
@@ -83,7 +83,7 @@ const Auth = () => {
         }}
       />
       
-      <Card className="w-full max-w-md relative backdrop-blur-sm bg-card/95 shadow-lg border-border/50">
+      <Card className="w-full max-w-md relative backdrop-blur-sm bg-card shadow-lg border-primary/20">
         <CardHeader>
           <CardTitle>{activeTab === "signin" ? "Sign In" : "Sign Up"}</CardTitle>
           <CardDescription>
@@ -94,7 +94,7 @@ const Auth = () => {
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="signin" onValueChange={setActiveTab}>
-            <TabsList className="grid w-full grid-cols-2">
+            <TabsList className="grid w-full grid-cols-2 bg-muted">
               <TabsTrigger value="signin">Sign In</TabsTrigger>
               <TabsTrigger value="signup">Sign Up</TabsTrigger>
             </TabsList>
@@ -123,7 +123,7 @@ const Auth = () => {
                     required
                   />
                 </div>
-                <Button type="submit" className="w-full" disabled={loading}>
+                <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={loading}>
                   {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                   Sign In
                 </Button>
@@ -191,7 +191,7 @@ const Auth = () => {
                     minLength={6}
                   />
                 </div>
-                <Button type="submit" className="w-full" disabled={loading}>
+                <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={loading}>
                   {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                   Sign Up
                 </Button>
