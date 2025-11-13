@@ -66,8 +66,8 @@ const Auth = () => {
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>Climate Risk Assessment</CardTitle>
-          <CardDescription>Sign in to access your geospatial analysis data</CardDescription>
+          <CardTitle>Geographical Risk Insurance Tool</CardTitle>
+          <CardDescription>Sign in</CardDescription>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="signin">
