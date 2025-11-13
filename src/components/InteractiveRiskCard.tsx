@@ -10,6 +10,14 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Info } from "lucide-react";
+import { CalculationPoint } from "@/components/FormulaDisplay";
+
+interface CalculationPoint {
+  title: string;
+  description: string;
+  formula?: string;
+  variables?: { symbol: string; description: string; }[];
+}
 
 interface InteractiveRiskCardProps {
   title: string;
@@ -17,7 +25,7 @@ interface InteractiveRiskCardProps {
   icon: LucideIcon;
   description: string;
   explanation: string;
-  calculationMethod: string;
+  calculationPoints?: CalculationPoint[];
   transparencyNote: string;
 }
 
@@ -41,7 +49,7 @@ const InteractiveRiskCard = ({
   icon: Icon, 
   description, 
   explanation,
-  calculationMethod,
+  calculationPoints,
   transparencyNote 
 }: InteractiveRiskCardProps) => {
   const risk = getRiskLevel(score);
@@ -95,12 +103,16 @@ const InteractiveRiskCard = ({
             <p className="text-sm text-muted-foreground">{explanation}</p>
           </div>
           
-          <div className="pt-4 border-t">
-            <h4 className="font-semibold mb-2">Calculation Methodology</h4>
-            <div className="text-sm text-muted-foreground prose prose-sm max-w-none prose-headings:text-foreground prose-headings:font-semibold prose-headings:mt-4 prose-headings:mb-2 prose-h3:text-base prose-strong:text-foreground prose-p:leading-relaxed">
-              {calculationMethod}
+          {calculationPoints && calculationPoints.length > 0 && (
+            <div className="pt-4 border-t">
+              <h4 className="font-semibold mb-2">Calculation Methodology</h4>
+              <div className="space-y-4">
+                {calculationPoints.map((point, idx) => (
+                  <CalculationPoint key={idx} {...point} />
+                ))}
+              </div>
             </div>
-          </div>
+          )}
           
           <div className="pt-4 border-t">
             <h4 className="font-semibold mb-2 flex items-center gap-2">
