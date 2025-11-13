@@ -71,9 +71,9 @@ const Hero = ({ onGetStarted }: { onGetStarted: () => void }) => {
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto animate-fade-in">
             <Dialog>
               <DialogTrigger asChild>
-                <div className="backdrop-blur-md bg-white/10 rounded-2xl p-4 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-pointer group">
-                  <div className="text-3xl md:text-4xl font-bold text-white mb-1">15+</div>
-                  <div className="text-sm md:text-base text-white/80 flex items-center gap-1">
+                <div className="backdrop-blur-md bg-white/10 rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-pointer group flex flex-col items-center justify-center min-h-[120px]">
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">15+</div>
+                  <div className="text-sm md:text-base text-white/80 flex items-center justify-center gap-1 text-center">
                     Satellite Data Feeds
                     <Info className="h-3 w-3 opacity-60 group-hover:opacity-100 transition-opacity" />
                   </div>
@@ -137,15 +137,15 @@ const Hero = ({ onGetStarted }: { onGetStarted: () => void }) => {
 
             <Dialog>
               <DialogTrigger asChild>
-                <div className="backdrop-blur-md bg-white/10 rounded-2xl p-4 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-pointer group">
-                  <div className="text-3xl md:text-4xl font-bold text-white mb-1">&lt;60s</div>
-                  <div className="text-sm md:text-base text-white/80 flex items-center gap-1">
+                <div className="backdrop-blur-md bg-white/10 rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-pointer group flex flex-col items-center justify-center min-h-[120px]">
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">&lt;60s</div>
+                  <div className="text-sm md:text-base text-white/80 flex items-center justify-center gap-1 text-center">
                     Analysis Speed
                     <Info className="h-3 w-3 opacity-60 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </div>
               </DialogTrigger>
-              <DialogContent className="max-w-2xl">
+              <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
                 <DialogHeader>
                   <DialogTitle className="text-2xl">Analysis Speed: Under 60 Seconds</DialogTitle>
                   <DialogDescription className="text-base pt-2">
@@ -190,9 +190,9 @@ const Hero = ({ onGetStarted }: { onGetStarted: () => void }) => {
 
             <Dialog>
               <DialogTrigger asChild>
-                <div className="backdrop-blur-md bg-white/10 rounded-2xl p-4 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-pointer group">
-                  <div className="text-3xl md:text-4xl font-bold text-white mb-1">10m</div>
-                  <div className="text-sm md:text-base text-white/80 flex items-center gap-1">
+                <div className="backdrop-blur-md bg-white/10 rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-pointer group flex flex-col items-center justify-center min-h-[120px]">
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">10m</div>
+                  <div className="text-sm md:text-base text-white/80 flex items-center justify-center gap-1 text-center">
                     Geospatial Resolution
                     <Info className="h-3 w-3 opacity-60 group-hover:opacity-100 transition-opacity" />
                   </div>
@@ -249,9 +249,9 @@ const Hero = ({ onGetStarted }: { onGetStarted: () => void }) => {
 
             <Dialog>
               <DialogTrigger asChild>
-                <div className="backdrop-blur-md bg-white/10 rounded-2xl p-4 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-pointer group">
-                  <div className="text-3xl md:text-4xl font-bold text-white mb-1">100+</div>
-                  <div className="text-sm md:text-base text-white/80 flex items-center gap-1">
+                <div className="backdrop-blur-md bg-white/10 rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-pointer group flex flex-col items-center justify-center min-h-[120px]">
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">100+</div>
+                  <div className="text-sm md:text-base text-white/80 flex items-center justify-center gap-1 text-center">
                     Parametric Triggers
                     <Info className="h-3 w-3 opacity-60 group-hover:opacity-100 transition-opacity" />
                   </div>
