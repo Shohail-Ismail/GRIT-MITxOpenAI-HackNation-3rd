@@ -97,7 +97,7 @@ const InteractiveRiskCard = ({
           
           <div className="pt-4 border-t">
             <h4 className="font-semibold mb-2">Calculation Methodology</h4>
-            <div className="text-sm text-muted-foreground whitespace-pre-line prose prose-sm max-w-none prose-headings:text-foreground prose-headings:font-semibold prose-headings:mt-4 prose-headings:mb-2 prose-h3:text-base prose-strong:text-foreground">
+            <div className="text-sm text-muted-foreground prose prose-sm max-w-none prose-headings:text-foreground prose-headings:font-semibold prose-headings:mt-4 prose-headings:mb-2 prose-h3:text-base prose-strong:text-foreground prose-p:leading-relaxed">
               {calculationMethod}
             </div>
           </div>
