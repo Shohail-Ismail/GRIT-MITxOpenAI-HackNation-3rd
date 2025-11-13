@@ -102,20 +102,20 @@ const Hero = ({ onGetStarted }: { onGetStarted: () => void }) => {
                       <li>• <a href="https://landsat.gsfc.nasa.gov/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Landsat 8/9</a> - Long-term land cover change</li>
                     </ul>
                     
-                    <h4 className="font-semibold text-sm pt-2">ESA Copernicus Program (6)</h4>
+                    <h4 className="font-semibold text-sm pt-2">ESA Copernicus Programme (6)</h4>
                     <ul className="space-y-1 text-sm text-muted-foreground ml-4">
-                      <li>• <a href="https://sentinel.esa.int/web/sentinel/missions/sentinel-1" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sentinel-1A/B</a> - SAR for all-weather flood detection</li>
-                      <li>• <a href="https://sentinel.esa.int/web/sentinel/missions/sentinel-2" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sentinel-2A/B</a> - 10m multispectral imagery</li>
-                      <li>• <a href="https://sentinel.esa.int/web/sentinel/missions/sentinel-3" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sentinel-3A/B</a> - Ocean/land temperature monitoring</li>
+                      <li>• <a href="https://copernicus.eu/missions/sentinel-1" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sentinel-1A/B</a> - SAR for all-weather flood detection</li>
+                      <li>• <a href="https://copernicus.eu/missions/sentinel-2" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sentinel-2A/B</a> - 10m multispectral imagery</li>
+                      <li>• <a href="https://copernicus.eu/missions/sentinel-3" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sentinel-3A/B</a> - Ocean/land temperature monitoring</li>
                     </ul>
                     
-                    <h4 className="font-semibold text-sm pt-2">Commercial & Specialized (6)</h4>
+                    <h4 className="font-semibold text-sm pt-2">Commercial & Specialised (6)</h4>
                     <ul className="space-y-1 text-sm text-muted-foreground ml-4">
                       <li>• <a href="https://www.planet.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Planet Labs Dove Constellation</a> - Daily 3-5m imagery</li>
-                      <li>• <a href="https://www.maxar.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Maxar WorldView-3</a> - High-resolution infrastructure mapping</li>
-                      <li>• <a href="https://earth.esa.int/eogateway/missions/smap" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">SMAP</a> - Soil moisture for drought detection</li>
+                      <li>• <a href="https://www.maxar.com/products/satellite-imagery" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Maxar WorldView-3</a> - High-resolution infrastructure mapping</li>
+                      <li>• <a href="https://smap.jpl.nasa.gov/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">SMAP</a> - Soil moisture for drought detection</li>
                       <li>• <a href="https://gracefo.jpl.nasa.gov/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">GRACE-FO</a> - Groundwater storage changes</li>
-                      <li>• <a href="https://www.nesdis.noaa.gov/current-satellite-missions/currently-flying/dscovr" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">DSCOVR</a> - Space weather monitoring</li>
+                      <li>• <a href="https://www.swpc.noaa.gov/products/dscovr-real-time-solar-wind" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">DSCOVR</a> - Space weather monitoring</li>
                       <li>• <a href="https://www.eumetsat.int/meteosat-third-generation" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Meteosat Third Generation</a> - European weather monitoring</li>
                     </ul>
                   </div>
