@@ -472,7 +472,14 @@ const Hero = ({ onGetStarted }: { onGetStarted: () => void }) => {
                         </div>
                       </CollapsibleTrigger>
                       <div className="text-sm text-muted-foreground mt-2">
-                        <strong>Shown (5):</strong> Precipitation &gt;50mm/24h • River gauge +2m above stage • SAR-detected inundation &gt;1 hectare • Groundwater rise &gt;1.5m • Storm surge &gt;2m at coastline
+                        <strong>Shown (5):</strong>
+                        <ul className="mt-1 space-y-1 ml-4">
+                          <li>• Precipitation &gt;50mm/24h</li>
+                          <li>• River gauge +2m above stage</li>
+                          <li>• SAR-detected inundation &gt;1 hectare</li>
+                          <li>• Groundwater rise &gt;1.5m</li>
+                          <li>• Storm surge &gt;2m at coastline</li>
+                        </ul>
                       </div>
                       <CollapsibleContent className="pt-3 space-y-1 text-sm text-muted-foreground">
                         <p><strong>Pluvial (Rainfall) Flooding (8):</strong> 24h precipitation &gt;50mm/75mm/100mm/150mm • 72h precipitation &gt;150mm/200mm/300mm • Rainfall intensity &gt;25mm/hour sustained 3+ hours</p>
@@ -491,7 +498,14 @@ const Hero = ({ onGetStarted }: { onGetStarted: () => void }) => {
                         </div>
                       </CollapsibleTrigger>
                       <div className="text-sm text-muted-foreground mt-2">
-                        <strong>Shown (5):</strong> Fire Radiative Power &gt;100 MW/pixel • Burned area within 1km radius • Fire Weather Index &gt;35 (extreme) • Wind speed &gt;50 km/h + temp &gt;35°C + humidity &lt;15% • Active fire perimeter &lt;500m from property
+                        <strong>Shown (5):</strong>
+                        <ul className="mt-1 space-y-1 ml-4">
+                          <li>• Fire Radiative Power &gt;100 MW/pixel</li>
+                          <li>• Burned area within 1km radius</li>
+                          <li>• Fire Weather Index &gt;35 (extreme)</li>
+                          <li>• Wind speed &gt;50 km/h + temp &gt;35°C + humidity &lt;15%</li>
+                          <li>• Active fire perimeter &lt;500m from property</li>
+                        </ul>
                       </div>
                       <CollapsibleContent className="pt-3 space-y-1 text-sm text-muted-foreground">
                         <p><strong>Fire Detection & Intensity (6):</strong> Fire Radiative Power &gt;50MW/100MW/200MW per pixel • Thermal anomaly detection 375K+/500K+ • Active fire line intensity &gt;4000 kW/m / &gt;10000 kW/m</p>
@@ -509,7 +523,14 @@ const Hero = ({ onGetStarted }: { onGetStarted: () => void }) => {
                         </div>
                       </CollapsibleTrigger>
                       <div className="text-sm text-muted-foreground mt-2">
-                        <strong>Shown (5):</strong> Sustained wind &gt;100 km/h at location • Hurricane Cat 3+ landfall within 50km • Hail diameter &gt;5cm detected • Lightning strike density &gt;10/km²/hour • Tornado EF2+ touchdown within 10km
+                        <strong>Shown (5):</strong>
+                        <ul className="mt-1 space-y-1 ml-4">
+                          <li>• Sustained wind &gt;100 km/h at location</li>
+                          <li>• Hurricane Cat 3+ landfall within 50km</li>
+                          <li>• Hail diameter &gt;5cm detected</li>
+                          <li>• Lightning strike density &gt;10/km²/hour</li>
+                          <li>• Tornado EF2+ touchdown within 10km</li>
+                        </ul>
                       </div>
                       <CollapsibleContent className="pt-3 space-y-1 text-sm text-muted-foreground">
                         <p><strong>Hurricane & Tropical Cyclones (7):</strong> Category 1/2/3/4/5 landfall within 50km/100km radius • Sustained winds &gt;119km/h / &gt;154km/h / &gt;178km/h at property location • Eye wall passage within 25km</p>
@@ -528,7 +549,14 @@ const Hero = ({ onGetStarted }: { onGetStarted: () => void }) => {
                         </div>
                       </CollapsibleTrigger>
                       <div className="text-sm text-muted-foreground mt-2">
-                        <strong>Shown (5):</strong> Soil moisture &lt;10th percentile for 30+ days • Consecutive days without rain &gt;45 days • Vegetation health index (NDVI) decline &gt;40% • Evapotranspiration deficit &gt;150mm cumulative • Palmer Drought Severity Index &lt;-3.0 (severe drought)
+                        <strong>Shown (5):</strong>
+                        <ul className="mt-1 space-y-1 ml-4">
+                          <li>• Soil moisture &lt;10th percentile for 30+ days</li>
+                          <li>• Consecutive days without rain &gt;45 days</li>
+                          <li>• Vegetation health index (NDVI) decline &gt;40%</li>
+                          <li>• Evapotranspiration deficit &gt;150mm cumulative</li>
+                          <li>• Palmer Drought Severity Index &lt;-3.0 (severe drought)</li>
+                        </ul>
                       </div>
                       <CollapsibleContent className="pt-3 space-y-1 text-sm text-muted-foreground">
                         <p><strong>Soil Moisture (5):</strong> Root zone soil moisture &lt;5th/10th/20th percentile for 14/30/60 days • Surface soil moisture &lt;0.15 m³/m³ for 21+ consecutive days</p>
@@ -546,7 +574,14 @@ const Hero = ({ onGetStarted }: { onGetStarted: () => void }) => {
                         </div>
                       </CollapsibleTrigger>
                       <div className="text-sm text-muted-foreground mt-2">
-                        <strong>Shown (5):</strong> Daily max temp &gt;40°C for 3+ consecutive days • Heat index &gt;45°C • Daily min temp &lt;-20°C • Freeze days &gt;5 consecutive below 0°C • Degree days exceeding 30-year normals by 400+
+                        <strong>Shown (5):</strong>
+                        <ul className="mt-1 space-y-1 ml-4">
+                          <li>• Daily max temp &gt;40°C for 3+ consecutive days</li>
+                          <li>• Heat index &gt;45°C</li>
+                          <li>• Daily min temp &lt;-20°C</li>
+                          <li>• Freeze days &gt;5 consecutive below 0°C</li>
+                          <li>• Degree days exceeding 30-year normals by 400+</li>
+                        </ul>
                       </div>
                       <CollapsibleContent className="pt-3 space-y-1 text-sm text-muted-foreground">
                         <p><strong>Heat Extremes (6):</strong> Daily maximum temperature &gt;38°C/40°C/42°C for 1/3/7 consecutive days • Heat index (apparent temperature) &gt;43°C/45°C/48°C • Tropical nights (minimum temp &gt;20°C) for 5+ consecutive nights</p>
@@ -556,13 +591,93 @@ const Hero = ({ onGetStarted }: { onGetStarted: () => void }) => {
                   </div>
 
                   <div className="pt-3 border-t">
-                    <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <h4 className="font-semibold mb-3 flex items-center gap-2">
                       <Info className="h-4 w-4 text-primary" />
                       Why Parametric Triggers Transform Insurance Operations
                     </h4>
-                    <p className="text-sm text-muted-foreground">
-                      <strong>Traditional claims</strong>: Adjuster site visits, documentation disputes, 60-180 day payout cycles, 15-25% administrative overhead.<br /><br />
-                      <strong>GRIT parametric triggers</strong>: Satellite verification within 24-72 hours, automated payout authorisation, 3-10 day settlement, &lt;3% administrative costs. Eliminates £8-15M annual claims processing expenses per 100,000 policies whilst improving customer satisfaction scores by 40+ points.
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      {/* Traditional Claims Table */}
+                      <div className="space-y-2">
+                        <h5 className="font-semibold text-sm text-destructive">Traditional Claims Process</h5>
+                        <div className="border rounded-lg overflow-hidden">
+                          <table className="w-full text-xs">
+                            <tbody className="divide-y">
+                              <tr className="bg-muted/30">
+                                <td className="p-2 font-medium">Verification</td>
+                                <td className="p-2 text-muted-foreground">Adjuster site visits</td>
+                              </tr>
+                              <tr>
+                                <td className="p-2 font-medium">Documentation</td>
+                                <td className="p-2 text-muted-foreground">Manual collection, disputes</td>
+                              </tr>
+                              <tr className="bg-muted/30">
+                                <td className="p-2 font-medium">Payout Cycle</td>
+                                <td className="p-2 text-muted-foreground">60-180 days</td>
+                              </tr>
+                              <tr>
+                                <td className="p-2 font-medium">Admin Overhead</td>
+                                <td className="p-2 text-muted-foreground">15-25% of claim value</td>
+                              </tr>
+                              <tr className="bg-muted/30">
+                                <td className="p-2 font-medium">Fraud Risk</td>
+                                <td className="p-2 text-muted-foreground">Significant (5-10% of claims)</td>
+                              </tr>
+                              <tr>
+                                <td className="p-2 font-medium">Customer Satisfaction</td>
+                                <td className="p-2 text-muted-foreground">Low (lengthy disputes)</td>
+                              </tr>
+                              <tr className="bg-muted/30">
+                                <td className="p-2 font-medium">Scalability</td>
+                                <td className="p-2 text-muted-foreground">Limited by adjuster capacity</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+
+                      {/* GRIT Table */}
+                      <div className="space-y-2">
+                        <h5 className="font-semibold text-sm text-primary">GRIT Parametric System</h5>
+                        <div className="border rounded-lg overflow-hidden">
+                          <table className="w-full text-xs">
+                            <tbody className="divide-y">
+                              <tr className="bg-muted/30">
+                                <td className="p-2 font-medium">Verification</td>
+                                <td className="p-2 text-muted-foreground">Satellite data (24-72h)</td>
+                              </tr>
+                              <tr>
+                                <td className="p-2 font-medium">Documentation</td>
+                                <td className="p-2 text-muted-foreground">Automated capture</td>
+                              </tr>
+                              <tr className="bg-muted/30">
+                                <td className="p-2 font-medium">Payout Cycle</td>
+                                <td className="p-2 text-muted-foreground">3-10 days</td>
+                              </tr>
+                              <tr>
+                                <td className="p-2 font-medium">Admin Overhead</td>
+                                <td className="p-2 text-muted-foreground">&lt;3% of claim value</td>
+                              </tr>
+                              <tr className="bg-muted/30">
+                                <td className="p-2 font-medium">Fraud Risk</td>
+                                <td className="p-2 text-muted-foreground">Minimal (objective triggers)</td>
+                              </tr>
+                              <tr>
+                                <td className="p-2 font-medium">Customer Satisfaction</td>
+                                <td className="p-2 text-muted-foreground">+40 points improvement</td>
+                              </tr>
+                              <tr className="bg-muted/30">
+                                <td className="p-2 font-medium">Scalability</td>
+                                <td className="p-2 text-muted-foreground">Unlimited (fully automated)</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-muted-foreground mt-3 p-2 bg-primary/10 rounded">
+                      <strong>Bottom Line:</strong> GRIT eliminates £8-15M annual claims processing expenses per 100,000 policies whilst dramatically improving customer experience and enabling instant catastrophe response at unlimited scale.
                     </p>
                   </div>
                 </div>
