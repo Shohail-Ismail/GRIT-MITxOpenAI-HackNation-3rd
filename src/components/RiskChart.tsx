@@ -63,6 +63,26 @@ const RiskChart = ({ factors, riskExplanations }: RiskChartProps) => {
       <Card className="p-6">
         <h3 className="text-lg font-semibold mb-4 text-card-foreground">Risk Comparison</h3>
         <p className="text-sm text-muted-foreground mb-4">Click on any bar to see detailed calculation methodology</p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+          {data.map((entry) => (
+            <button
+              key={entry.key}
+              onClick={() => handleBarClick(entry)}
+              className="flex flex-col items-center gap-2 p-4 rounded-lg border-2 transition-all hover:shadow-md hover:-translate-y-1 cursor-pointer"
+              style={{ borderColor: entry.color }}
+            >
+              {(() => {
+                const Icon = getRiskIcon(entry.key);
+                return <Icon className="h-6 w-6" style={{ color: entry.color }} />;
+              })()}
+              <span className="text-sm font-medium text-card-foreground">{entry.name}</span>
+              <span className="text-2xl font-bold" style={{ color: entry.color }}>{entry.value}</span>
+              <span className="text-xs text-muted-foreground">
+                {entry.value === 0 ? 'No Risk' : entry.value < 25 ? 'Low' : entry.value < 50 ? 'Medium' : entry.value < 75 ? 'High' : 'Critical'}
+              </span>
+            </button>
+          ))}
+        </div>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
@@ -99,7 +119,10 @@ const RiskChart = ({ factors, riskExplanations }: RiskChartProps) => {
                   {riskExplanations.flood.title}
                 </DialogTitle>
                 <DialogDescription className="text-base pt-2">
-                  Score: <span className="font-bold text-foreground text-xl">{factors.flood}</span>
+                  Score: <span className="font-bold text-foreground text-xl">{factors.flood}</span> — 
+                  <span className="font-semibold">
+                    {factors.flood === 0 ? 'No Risk Detected' : factors.flood < 25 ? 'Low Risk' : factors.flood < 50 ? 'Medium Risk' : factors.flood < 75 ? 'High Risk' : 'Critical Risk'}
+                  </span>
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-4 pt-2">
@@ -108,12 +131,8 @@ const RiskChart = ({ factors, riskExplanations }: RiskChartProps) => {
                   <p className="text-sm text-muted-foreground">{riskExplanations.flood.explanation}</p>
                 </div>
                 <div className="pt-4 border-t">
-                  <h4 className="font-semibold mb-3 text-base">Calculation Methodology</h4>
-                  <div className="bg-muted/50 rounded-lg p-4">
-                    <div className="prose prose-sm max-w-none text-muted-foreground whitespace-pre-line">
-                      {riskExplanations.flood.calculationMethod}
-                    </div>
-                  </div>
+                  <h4 className="font-semibold mb-2">Calculation Methodology</h4>
+                  <p className="text-sm text-muted-foreground whitespace-pre-line">{riskExplanations.flood.calculationMethod}</p>
                 </div>
                 <div className="pt-4 border-t">
                   <h4 className="font-semibold mb-2 flex items-center gap-2">
@@ -134,7 +153,10 @@ const RiskChart = ({ factors, riskExplanations }: RiskChartProps) => {
                   {riskExplanations.wildfire.title}
                 </DialogTitle>
                 <DialogDescription className="text-base pt-2">
-                  Score: <span className="font-bold text-foreground text-xl">{factors.wildfire}</span>
+                  Score: <span className="font-bold text-foreground text-xl">{factors.wildfire}</span> — 
+                  <span className="font-semibold">
+                    {factors.wildfire === 0 ? 'No Risk Detected' : factors.wildfire < 25 ? 'Low Risk' : factors.wildfire < 50 ? 'Medium Risk' : factors.wildfire < 75 ? 'High Risk' : 'Critical Risk'}
+                  </span>
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-4 pt-2">
@@ -143,12 +165,8 @@ const RiskChart = ({ factors, riskExplanations }: RiskChartProps) => {
                   <p className="text-sm text-muted-foreground">{riskExplanations.wildfire.explanation}</p>
                 </div>
                 <div className="pt-4 border-t">
-                  <h4 className="font-semibold mb-3 text-base">Calculation Methodology</h4>
-                  <div className="bg-muted/50 rounded-lg p-4">
-                    <div className="prose prose-sm max-w-none text-muted-foreground whitespace-pre-line">
-                      {riskExplanations.wildfire.calculationMethod}
-                    </div>
-                  </div>
+                  <h4 className="font-semibold mb-2">Calculation Methodology</h4>
+                  <p className="text-sm text-muted-foreground whitespace-pre-line">{riskExplanations.wildfire.calculationMethod}</p>
                 </div>
                 <div className="pt-4 border-t">
                   <h4 className="font-semibold mb-2 flex items-center gap-2">
@@ -169,7 +187,10 @@ const RiskChart = ({ factors, riskExplanations }: RiskChartProps) => {
                   {riskExplanations.storm.title}
                 </DialogTitle>
                 <DialogDescription className="text-base pt-2">
-                  Score: <span className="font-bold text-foreground text-xl">{factors.storm}</span>
+                  Score: <span className="font-bold text-foreground text-xl">{factors.storm}</span> — 
+                  <span className="font-semibold">
+                    {factors.storm === 0 ? 'No Risk Detected' : factors.storm < 25 ? 'Low Risk' : factors.storm < 50 ? 'Medium Risk' : factors.storm < 75 ? 'High Risk' : 'Critical Risk'}
+                  </span>
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-4 pt-2">
@@ -178,12 +199,8 @@ const RiskChart = ({ factors, riskExplanations }: RiskChartProps) => {
                   <p className="text-sm text-muted-foreground">{riskExplanations.storm.explanation}</p>
                 </div>
                 <div className="pt-4 border-t">
-                  <h4 className="font-semibold mb-3 text-base">Calculation Methodology</h4>
-                  <div className="bg-muted/50 rounded-lg p-4">
-                    <div className="prose prose-sm max-w-none text-muted-foreground whitespace-pre-line">
-                      {riskExplanations.storm.calculationMethod}
-                    </div>
-                  </div>
+                  <h4 className="font-semibold mb-2">Calculation Methodology</h4>
+                  <p className="text-sm text-muted-foreground whitespace-pre-line">{riskExplanations.storm.calculationMethod}</p>
                 </div>
                 <div className="pt-4 border-t">
                   <h4 className="font-semibold mb-2 flex items-center gap-2">
@@ -204,7 +221,10 @@ const RiskChart = ({ factors, riskExplanations }: RiskChartProps) => {
                   {riskExplanations.drought.title}
                 </DialogTitle>
                 <DialogDescription className="text-base pt-2">
-                  Score: <span className="font-bold text-foreground text-xl">{factors.drought}</span>
+                  Score: <span className="font-bold text-foreground text-xl">{factors.drought}</span> — 
+                  <span className="font-semibold">
+                    {factors.drought === 0 ? 'No Risk Detected' : factors.drought < 25 ? 'Low Risk' : factors.drought < 50 ? 'Medium Risk' : factors.drought < 75 ? 'High Risk' : 'Critical Risk'}
+                  </span>
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-4 pt-2">
@@ -213,12 +233,8 @@ const RiskChart = ({ factors, riskExplanations }: RiskChartProps) => {
                   <p className="text-sm text-muted-foreground">{riskExplanations.drought.explanation}</p>
                 </div>
                 <div className="pt-4 border-t">
-                  <h4 className="font-semibold mb-3 text-base">Calculation Methodology</h4>
-                  <div className="bg-muted/50 rounded-lg p-4">
-                    <div className="prose prose-sm max-w-none text-muted-foreground whitespace-pre-line">
-                      {riskExplanations.drought.calculationMethod}
-                    </div>
-                  </div>
+                  <h4 className="font-semibold mb-2">Calculation Methodology</h4>
+                  <p className="text-sm text-muted-foreground whitespace-pre-line">{riskExplanations.drought.calculationMethod}</p>
                 </div>
                 <div className="pt-4 border-t">
                   <h4 className="font-semibold mb-2 flex items-center gap-2">

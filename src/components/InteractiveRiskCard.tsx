@@ -96,42 +96,8 @@ const InteractiveRiskCard = ({
           </div>
           
           <div className="pt-4 border-t">
-            <h4 className="font-semibold mb-3 text-base">Calculation Methodology</h4>
-            <div className="bg-muted/50 rounded-lg p-4 space-y-3">
-              <div className="prose prose-sm max-w-none text-muted-foreground">
-                {calculationMethod.split('\n\n').map((section, idx) => {
-                  // Check if this is a bullet point section
-                  if (section.includes('•') || section.includes('-')) {
-                    const lines = section.split('\n').filter(line => line.trim());
-                    return (
-                      <ul key={idx} className="space-y-2 list-none pl-0 mb-3">
-                        {lines.map((line, lineIdx) => {
-                          const cleanLine = line.replace(/^[•\-]\s*/, '').trim();
-                          if (!cleanLine) return null;
-                          
-                          // Check if line contains a formula or key metric
-                          const hasFormula = cleanLine.includes('=') || cleanLine.includes('+') || cleanLine.includes('×');
-                          
-                          return (
-                            <li key={lineIdx} className="flex items-start gap-2">
-                              <span className="text-primary mt-1 flex-shrink-0">▪</span>
-                              <span className={hasFormula ? "font-mono text-xs bg-background px-2 py-1 rounded" : ""}>
-                                {cleanLine}
-                              </span>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    );
-                  }
-                  
-                  // Regular paragraph
-                  return section.trim() ? (
-                    <p key={idx} className="mb-2 leading-relaxed">{section.trim()}</p>
-                  ) : null;
-                })}
-              </div>
-            </div>
+            <h4 className="font-semibold mb-2">Calculation Methodology</h4>
+            <p className="text-sm text-muted-foreground whitespace-pre-line">{calculationMethod}</p>
           </div>
           
           <div className="pt-4 border-t">

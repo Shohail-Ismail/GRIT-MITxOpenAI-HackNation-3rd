@@ -184,12 +184,8 @@ const RiskScoreDisplay = ({ overallScore, latitude, longitude, factors, riskExpl
                         <p className="text-sm text-muted-foreground">{riskExplanations.flood.explanation}</p>
                       </div>
                       <div className="pt-4 border-t">
-                        <h4 className="font-semibold mb-3 text-base">Calculation Methodology</h4>
-                        <div className="bg-muted/50 rounded-lg p-4">
-                          <div className="prose prose-sm max-w-none text-muted-foreground whitespace-pre-line">
-                            {riskExplanations.flood.calculationMethod}
-                          </div>
-                        </div>
+                        <h4 className="font-semibold mb-2">Calculation Methodology</h4>
+                        <p className="text-sm text-muted-foreground whitespace-pre-line">{riskExplanations.flood.calculationMethod}</p>
                       </div>
                       <div className="pt-4 border-t">
                         <h4 className="font-semibold mb-2 flex items-center gap-2">
@@ -232,12 +228,8 @@ const RiskScoreDisplay = ({ overallScore, latitude, longitude, factors, riskExpl
                         <p className="text-sm text-muted-foreground">{riskExplanations.wildfire.explanation}</p>
                       </div>
                       <div className="pt-4 border-t">
-                        <h4 className="font-semibold mb-3 text-base">Calculation Methodology</h4>
-                        <div className="bg-muted/50 rounded-lg p-4">
-                          <div className="prose prose-sm max-w-none text-muted-foreground whitespace-pre-line">
-                            {riskExplanations.wildfire.calculationMethod}
-                          </div>
-                        </div>
+                        <h4 className="font-semibold mb-2">Calculation Methodology</h4>
+                        <p className="text-sm text-muted-foreground whitespace-pre-line">{riskExplanations.wildfire.calculationMethod}</p>
                       </div>
                       <div className="pt-4 border-t">
                         <h4 className="font-semibold mb-2 flex items-center gap-2">
@@ -280,12 +272,8 @@ const RiskScoreDisplay = ({ overallScore, latitude, longitude, factors, riskExpl
                         <p className="text-sm text-muted-foreground">{riskExplanations.storm.explanation}</p>
                       </div>
                       <div className="pt-4 border-t">
-                        <h4 className="font-semibold mb-3 text-base">Calculation Methodology</h4>
-                        <div className="bg-muted/50 rounded-lg p-4">
-                          <div className="prose prose-sm max-w-none text-muted-foreground whitespace-pre-line">
-                            {riskExplanations.storm.calculationMethod}
-                          </div>
-                        </div>
+                        <h4 className="font-semibold mb-2">Calculation Methodology</h4>
+                        <p className="text-sm text-muted-foreground whitespace-pre-line">{riskExplanations.storm.calculationMethod}</p>
                       </div>
                       <div className="pt-4 border-t">
                         <h4 className="font-semibold mb-2 flex items-center gap-2">
@@ -328,12 +316,8 @@ const RiskScoreDisplay = ({ overallScore, latitude, longitude, factors, riskExpl
                         <p className="text-sm text-muted-foreground">{riskExplanations.drought.explanation}</p>
                       </div>
                       <div className="pt-4 border-t">
-                        <h4 className="font-semibold mb-3 text-base">Calculation Methodology</h4>
-                        <div className="bg-muted/50 rounded-lg p-4">
-                          <div className="prose prose-sm max-w-none text-muted-foreground whitespace-pre-line">
-                            {riskExplanations.drought.calculationMethod}
-                          </div>
-                        </div>
+                        <h4 className="font-semibold mb-2">Calculation Methodology</h4>
+                        <p className="text-sm text-muted-foreground whitespace-pre-line">{riskExplanations.drought.calculationMethod}</p>
                       </div>
                       <div className="pt-4 border-t">
                         <h4 className="font-semibold mb-2 flex items-center gap-2">
