@@ -1,5 +1,21 @@
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts";
+import { Droplets, Flame, Wind, Sun, Info } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+
+interface RiskFactor {
+  title: string;
+  explanation: string;
+  calculationMethod: string;
+  transparencyNote: string;
+}
 
 interface RiskChartProps {
   factors: {
@@ -8,39 +24,215 @@ interface RiskChartProps {
     storm: number;
     drought: number;
   };
+  riskExplanations?: {
+    flood: RiskFactor;
+    wildfire: RiskFactor;
+    storm: RiskFactor;
+    drought: RiskFactor;
+  };
 }
 
-const RiskChart = ({ factors }: RiskChartProps) => {
+const RiskChart = ({ factors, riskExplanations }: RiskChartProps) => {
+  const [selectedRisk, setSelectedRisk] = useState<string | null>(null);
+  
   const data = [
-    { name: "Flood", value: factors.flood, color: "hsl(var(--chart-1))" },
-    { name: "Wildfire", value: factors.wildfire, color: "hsl(var(--chart-2))" },
-    { name: "Storm", value: factors.storm, color: "hsl(var(--chart-3))" },
-    { name: "Drought", value: factors.drought, color: "hsl(var(--chart-4))" },
+    { name: "Flood", value: factors.flood, color: "hsl(var(--chart-1))", key: "flood" },
+    { name: "Wildfire", value: factors.wildfire, color: "hsl(var(--chart-2))", key: "wildfire" },
+    { name: "Storm", value: factors.storm, color: "hsl(var(--chart-3))", key: "storm" },
+    { name: "Drought", value: factors.drought, color: "hsl(var(--chart-4))", key: "drought" },
   ];
 
+  const getRiskIcon = (riskKey: string) => {
+    switch (riskKey) {
+      case 'flood': return Droplets;
+      case 'wildfire': return Flame;
+      case 'storm': return Wind;
+      case 'drought': return Sun;
+      default: return Info;
+    }
+  };
+
+  const handleBarClick = (data: any) => {
+    if (riskExplanations) {
+      setSelectedRisk(data.key);
+    }
+  };
+
   return (
-    <Card className="p-6">
-      <h3 className="text-lg font-semibold mb-4 text-card-foreground">Risk Comparison</h3>
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-          <XAxis dataKey="name" stroke="hsl(var(--muted-foreground))" />
-          <YAxis stroke="hsl(var(--muted-foreground))" />
-          <Tooltip 
-            contentStyle={{ 
-              backgroundColor: "hsl(var(--card))", 
-              border: "1px solid hsl(var(--border))",
-              borderRadius: "8px"
-            }}
-          />
-          <Bar dataKey="value" radius={[8, 8, 0, 0]}>
-            {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={entry.color} />
-            ))}
-          </Bar>
-        </BarChart>
-      </ResponsiveContainer>
-    </Card>
+    <>
+      <Card className="p-6">
+        <h3 className="text-lg font-semibold mb-4 text-card-foreground">Risk Comparison</h3>
+        <p className="text-sm text-muted-foreground mb-4">Click on any bar to see detailed calculation methodology</p>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={data}>
+            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+            <XAxis dataKey="name" stroke="hsl(var(--muted-foreground))" />
+            <YAxis stroke="hsl(var(--muted-foreground))" />
+            <Tooltip 
+              contentStyle={{ 
+                backgroundColor: "hsl(var(--card))", 
+                border: "1px solid hsl(var(--border))",
+                borderRadius: "8px"
+              }}
+            />
+            <Bar 
+              dataKey="value" 
+              radius={[8, 8, 0, 0]}
+              onClick={handleBarClick}
+              cursor={riskExplanations ? "pointer" : "default"}
+            >
+              {data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={entry.color} />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </Card>
+
+      {riskExplanations && selectedRisk && (
+        <>
+          <Dialog open={selectedRisk === 'flood'} onOpenChange={(open) => !open && setSelectedRisk(null)}>
+            <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <Droplets className="h-5 w-5 text-primary" />
+                  {riskExplanations.flood.title}
+                </DialogTitle>
+                <DialogDescription className="text-base pt-2">
+                  Score: <span className="font-bold text-foreground text-xl">{factors.flood}</span>
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 pt-2">
+                <div>
+                  <h4 className="font-semibold mb-2">What This Measures</h4>
+                  <p className="text-sm text-muted-foreground">{riskExplanations.flood.explanation}</p>
+                </div>
+                <div className="pt-4 border-t">
+                  <h4 className="font-semibold mb-3 text-base">Calculation Methodology</h4>
+                  <div className="bg-muted/50 rounded-lg p-4">
+                    <div className="prose prose-sm max-w-none text-muted-foreground whitespace-pre-line">
+                      {riskExplanations.flood.calculationMethod}
+                    </div>
+                  </div>
+                </div>
+                <div className="pt-4 border-t">
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <Info className="h-4 w-4 text-primary" />
+                    Data Sources & Transparency
+                  </h4>
+                  <p className="text-sm text-muted-foreground">{riskExplanations.flood.transparencyNote}</p>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
+
+          <Dialog open={selectedRisk === 'wildfire'} onOpenChange={(open) => !open && setSelectedRisk(null)}>
+            <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <Flame className="h-5 w-5 text-primary" />
+                  {riskExplanations.wildfire.title}
+                </DialogTitle>
+                <DialogDescription className="text-base pt-2">
+                  Score: <span className="font-bold text-foreground text-xl">{factors.wildfire}</span>
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 pt-2">
+                <div>
+                  <h4 className="font-semibold mb-2">What This Measures</h4>
+                  <p className="text-sm text-muted-foreground">{riskExplanations.wildfire.explanation}</p>
+                </div>
+                <div className="pt-4 border-t">
+                  <h4 className="font-semibold mb-3 text-base">Calculation Methodology</h4>
+                  <div className="bg-muted/50 rounded-lg p-4">
+                    <div className="prose prose-sm max-w-none text-muted-foreground whitespace-pre-line">
+                      {riskExplanations.wildfire.calculationMethod}
+                    </div>
+                  </div>
+                </div>
+                <div className="pt-4 border-t">
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <Info className="h-4 w-4 text-primary" />
+                    Data Sources & Transparency
+                  </h4>
+                  <p className="text-sm text-muted-foreground">{riskExplanations.wildfire.transparencyNote}</p>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
+
+          <Dialog open={selectedRisk === 'storm'} onOpenChange={(open) => !open && setSelectedRisk(null)}>
+            <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <Wind className="h-5 w-5 text-primary" />
+                  {riskExplanations.storm.title}
+                </DialogTitle>
+                <DialogDescription className="text-base pt-2">
+                  Score: <span className="font-bold text-foreground text-xl">{factors.storm}</span>
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 pt-2">
+                <div>
+                  <h4 className="font-semibold mb-2">What This Measures</h4>
+                  <p className="text-sm text-muted-foreground">{riskExplanations.storm.explanation}</p>
+                </div>
+                <div className="pt-4 border-t">
+                  <h4 className="font-semibold mb-3 text-base">Calculation Methodology</h4>
+                  <div className="bg-muted/50 rounded-lg p-4">
+                    <div className="prose prose-sm max-w-none text-muted-foreground whitespace-pre-line">
+                      {riskExplanations.storm.calculationMethod}
+                    </div>
+                  </div>
+                </div>
+                <div className="pt-4 border-t">
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <Info className="h-4 w-4 text-primary" />
+                    Data Sources & Transparency
+                  </h4>
+                  <p className="text-sm text-muted-foreground">{riskExplanations.storm.transparencyNote}</p>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
+
+          <Dialog open={selectedRisk === 'drought'} onOpenChange={(open) => !open && setSelectedRisk(null)}>
+            <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <Sun className="h-5 w-5 text-primary" />
+                  {riskExplanations.drought.title}
+                </DialogTitle>
+                <DialogDescription className="text-base pt-2">
+                  Score: <span className="font-bold text-foreground text-xl">{factors.drought}</span>
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 pt-2">
+                <div>
+                  <h4 className="font-semibold mb-2">What This Measures</h4>
+                  <p className="text-sm text-muted-foreground">{riskExplanations.drought.explanation}</p>
+                </div>
+                <div className="pt-4 border-t">
+                  <h4 className="font-semibold mb-3 text-base">Calculation Methodology</h4>
+                  <div className="bg-muted/50 rounded-lg p-4">
+                    <div className="prose prose-sm max-w-none text-muted-foreground whitespace-pre-line">
+                      {riskExplanations.drought.calculationMethod}
+                    </div>
+                  </div>
+                </div>
+                <div className="pt-4 border-t">
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <Info className="h-4 w-4 text-primary" />
+                    Data Sources & Transparency
+                  </h4>
+                  <p className="text-sm text-muted-foreground">{riskExplanations.drought.transparencyNote}</p>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
+        </>
+      )}
+    </>
   );
 };
 
