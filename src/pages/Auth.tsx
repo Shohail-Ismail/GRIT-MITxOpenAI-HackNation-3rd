@@ -71,8 +71,19 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
-      <Card className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Background with earth-toned gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/10" />
+      <div 
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `url(${earthHero})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      
+      <Card className="w-full max-w-md relative backdrop-blur-sm bg-card/95 shadow-lg border-border/50">
         <CardHeader>
           <CardTitle>{activeTab === "signin" ? "Sign In" : "Sign Up"}</CardTitle>
           <CardDescription>
