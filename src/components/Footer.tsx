@@ -11,7 +11,9 @@ const Footer = () => {
           </div>
           <p className="font-medium">MITxOpenAI HackNation 2025 Prototype</p>
         </div>
-        <p className="font-medium">Made with Love(able) {'=>'} Shohail Ismail + Chinmay Sharma</p>
+        <p className="text-center text-sm text-muted-foreground/80 mt-4">
+          Made with Love(able) by Shohail Ismail + Chinmay Sharma
+        </p>
       </div>
     </footer>
   );
