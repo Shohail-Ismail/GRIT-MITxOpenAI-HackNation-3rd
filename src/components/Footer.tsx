@@ -7,13 +7,14 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
             <Shield className="h-4 w-4 text-primary" />
-            <p>Built on transparent AI principles - every claim and every score is explainable!</p>
+            <p>Built on transparent AI principles - every claim is verifiable, and every score explainable!</p>
           </div>
           <p className="font-medium">MITxOpenAI HackNation 2025 Prototype</p>
-          <p className="font-medium">
-            Risk scores are demonstrative approximates with inherent uncertainty and should not be the sole basis used
-            for financial decisions.
-          </p>
+          <div className="flex items-center gap-2">
+            <p className="font-medium">
+              Risk scores are demonstrative approximates - do not use for financial decisions
+            </p>
+          </div>
         </div>
         <p className="text-center text-sm text-muted-foreground/80 mt-4">
           Made with Love(able) by Shohail Ismail + Chinmay Sharma
