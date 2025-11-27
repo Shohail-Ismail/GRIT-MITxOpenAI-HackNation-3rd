@@ -11,9 +11,7 @@ const Footer = () => {
           </div>
           <p className="font-medium">MITxOpenAI HackNation 2025 Prototype</p>
           <div className="flex items-center gap-2">
-            <p className="font-medium">
-              Risk scores are demonstrative approximates - do not use for financial decisions
-            </p>
+            <p className="font-medium">Risk scores are demonstrative - do not use for financial decisions</p>
           </div>
         </div>
         <p className="text-center text-sm text-muted-foreground/80 mt-4">
