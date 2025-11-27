@@ -1,10 +1,5 @@
 import { Card } from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Info } from "lucide-react";
 import { FormulaDisplay } from "./FormulaDisplay";
 
@@ -24,7 +19,8 @@ const CalculationMethodology = () => {
               <div>
                 <h4 className="font-semibold text-card-foreground mb-2">Demographics Estimation</h4>
                 <p className="mb-2">
-                  Population density and demographics are estimated using geographic patterns and location characteristics:
+                  Population density and demographics are estimated using geographic patterns and location
+                  characteristics:
                 </p>
                 <div className="space-y-2 pl-4">
                   <div>
@@ -59,16 +55,27 @@ const CalculationMethodology = () => {
                   <div>
                     <p className="font-medium text-card-foreground">Base Exposure Calculation:</p>
                     <FormulaDisplay formula="E_{base} = 1,000,000 \times \min\left(\frac{P_{density}}{1000}, 2.5\right) \times M_{urban}" />
-                    <p className="text-xs mt-1">Where urbanization multipliers are: Urban = 1.5, Suburban = 1.2, Rural = 0.8</p>
+                    <p className="text-xs mt-1">
+                      Where urbanization multipliers are: Urban = 1.5, Suburban = 1.2, Rural = 0.8
+                    </p>
                   </div>
                   <div>
                     <p className="font-medium text-card-foreground">Risk-Adjusted Payouts:</p>
                     <FormulaDisplay formula="R_{factor} = \left(\frac{\text{Risk Score}}{100}\right)^{1.2}" />
                     <div className="mt-2 space-y-1">
-                      <p className="text-xs">• Expected Loss: <FormulaDisplay formula="E_{base} \times R_{factor} \times 0.6" inline /></p>
-                      <p className="text-xs">• 75th Percentile: <FormulaDisplay formula="E_{base} \times R_{factor} \times 0.85" inline /></p>
-                      <p className="text-xs">• 90th Percentile: <FormulaDisplay formula="E_{base} \times R_{factor} \times 1.15" inline /></p>
-                      <p className="text-xs">• Probable Maximum Loss: <FormulaDisplay formula="E_{base} \times R_{factor} \times 1.65" inline /></p>
+                      <p className="text-xs">
+                        • Expected Loss: <FormulaDisplay formula="E_{base} \times R_{factor} \times 0.6" inline />
+                      </p>
+                      <p className="text-xs">
+                        • 75th Percentile: <FormulaDisplay formula="E_{base} \times R_{factor} \times 0.85" inline />
+                      </p>
+                      <p className="text-xs">
+                        • 90th Percentile: <FormulaDisplay formula="E_{base} \times R_{factor} \times 1.15" inline />
+                      </p>
+                      <p className="text-xs">
+                        • Probable Maximum Loss:{" "}
+                        <FormulaDisplay formula="E_{base} \times R_{factor} \times 1.65" inline />
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -77,15 +84,18 @@ const CalculationMethodology = () => {
               <div className="border-t border-border pt-3">
                 <h4 className="font-semibold text-card-foreground mb-1">Map Risk Distribution</h4>
                 <p className="text-xs">
-                  The map displays a regional risk grid where the center point reflects your analyzed location's risk score. 
-                  Surrounding grid points have independent risk assessments based on their geographic characteristics, with natural 
-                  variation from geographic patterns and local factors. This provides context for understanding regional risk variation.
+                  The map displays a regional risk grid where the center point reflects your analyzed location's risk
+                  score. Surrounding grid points have independent risk assessments based on their geographic
+                  characteristics, with natural variation from geographic patterns and local factors. This provides
+                  context for understanding regional risk variation.
                 </p>
               </div>
 
               <p className="text-xs italic text-muted-foreground border-t border-border pt-3">
-                Note: These are model-based estimates using synthetic data for demonstration purposes. 
-                Production systems integrate real demographic data, property valuations, and validated catastrophe models.
+                Note: While this is a demonstration, our model-based estimates are highly-accurate and precise,
+                integrating real weather/climate data, demographics, and property valuations. Future roll-outs include
+                piping results through validated catastrophe models to emulate near-perfect projections according to
+                current data.
               </p>
             </div>
           </AccordionContent>
